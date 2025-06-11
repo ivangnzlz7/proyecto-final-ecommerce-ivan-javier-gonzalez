@@ -31,9 +31,15 @@ export const productById = async (req, res) => {
 
 export const createProduct = async (req, res) => {
     
+    const { name, price, stock, category } = req.body;
+    const product = {
+        name,
+        price,
+        stock,
+        category
+    };    
     try {
-        const { name, price, stock, category } = req.body;
-        const newProduct = await productCreate({ name, price, stock, category })
+        const newProduct = await productCreate(product)
         res.status(201).json(newProduct);
     } catch (err) {
         res.status(500).json({error: 'Internal server error'})

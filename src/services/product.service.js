@@ -10,8 +10,7 @@ export const byIdProduct = id => {
 }
 
 export const productCreate = product => {
-    const { name, price, stock, category } = product
-    return serviceProduct.saveProduct(name, price, stock, category);
+    return serviceProduct.saveProduct(product);
 };
 
 export const categoryByProduct = category => {
@@ -23,11 +22,9 @@ export const productDeleteById = id => {
 }
 
 export const productUpdate = product => {
-    const { id, name, price, category, stock } = product;
-    return serviceProduct.updateProduct(id, name, price, category, stock);
+    return serviceProduct.updateProduct(product);
 }
 
 export const updatePartialProduct = product => {
-    const {id, name, price, category, stock} = product;
-    return serviceProduct.partialProductUpdate(id, name, price, category, stock);
+    return serviceProduct.partialProductUpdate(product);
 }

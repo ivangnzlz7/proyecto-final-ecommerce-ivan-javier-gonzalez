@@ -14,13 +14,14 @@ const __dirname = import.meta.dirname;
 const dataPath = path.join(__dirname, '../data/products.json');
 const productsCollection = collection(db, 'products');
 
+/*
 //Ordena los productos
 function orderProduct(){
     const products = getAllProducts();
     products.sort((a, b) => a.id - b.id);
     fs.writeFileSync(dataPath, JSON.stringify(products, null, 2))
 }
-
+*/
 
 export async function getProductById(id) {
     const productDocs = await getAllProducts();
@@ -47,17 +48,21 @@ export async function getAllProducts(){
     */
 }
 
-export async function saveProduct({name, price, stock, category}){
-    const products = await getAllProducts();
+export async function saveProduct(product){
+
+    const { name, price, category, stock } = product;
+    // const products = await getAllProducts();
     const productSave = {
         name,
         price,
         category,
-        stock
+        stock 
     }
-    products.push(productSave);
+    /*
+    products.push(productSave); */
+    
         //Guardamos en firebase
-        await addDoc(productsCollection, productSave);
+        await addDoc(productsCollection, productSave); 
         /*
         // Guardamos localmente
         fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));*/
@@ -81,11 +86,18 @@ export async function deleteByProduct(id){
     return productJson;*/
 }
 
-export async function updateProduct(id, name, price, category, stock){
+export async function updateProduct(products){
+    const {id, name, price, category, stock } = products
     // Eliminamos el producto
     await deleteByProduct(id);
     // Creamos el producto apartir del producto borrado
-    const product =  await saveProduct(name, price, category, stock);
+    const newProduct = {
+        name,
+        price,
+        category,
+        stock
+    }
+    const product =  await saveProduct(newProduct);
     return product;
     /*
     const productsFilter = products.filter( product => product.id !== id );
@@ -96,7 +108,8 @@ export async function updateProduct(id, name, price, category, stock){
     return productUpdate;*/
 }
 
-export async function partialProductUpdate(id, name, price, category, stock){
+export async function partialProductUpdate(products){
+    const { id, name, price, category, stock } = products
     //Buscamos el producto
     const product = await getProductById(id)
     
