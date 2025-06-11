@@ -1,0 +1,43 @@
+[
+  {
+    "id": "2k8QrkwwmSnJOhVH87h0",
+    "price": 929000,
+    "category": "apple",
+    "name": "Iphone 10 black",
+    "stock": 10
+  },
+  {
+    "id": "A0YowfIDxzgqgTvv3IAo",
+    "stock": 8,
+    "name": "Iphone pro max 15 white",
+    "price": 909800,
+    "category": "apple"
+  },
+  {
+    "id": "IsbjEynFiT1jzUHfv2SM",
+    "name": "Iphone 11 white",
+    "stock": 8,
+    "price": 919000,
+    "category": "apple"
+  },
+  {
+    "id": "bMW5VkYH5kaHjZ2W4xKb",
+    "category": "apple",
+    "price": 989000,
+    "stock": 6,
+    "name": "Iphone 16 blue"
+  },
+  {
+    "id": "vN6KpvTfCwnWLUSQTgYO",
+    "price": 959000,
+    "name": "Iphone 10 green",
+    "stock": 12,
+    "category": "apple"
+  },
+  {
+    "name": "Samsung galaxi A03",
+    "price": 209800,
+    "category": "samsung",
+    "stock": 15
+  }
+]
