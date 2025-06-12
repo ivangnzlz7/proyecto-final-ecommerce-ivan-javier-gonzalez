@@ -5,19 +5,22 @@ import bodyParser from 'body-parser';
 import { authentication } from './src/middlewares/authentication.js';
 import users from './src/routes/usersRoutes.js';
 import cors from 'cors';
+import path from 'path';
 
+const __dirname = import.meta.dirname;
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
 app.use(cors());
+app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas
 app.use('/user', users)
 app.use('/auth', authRouter)
-app.use('/api', authentication, productsRouter);
+app.use('/api', productsRouter);
 
 app.get('/', (req, res) => {
-    res.send('<h1>Inicio de servidor con express</h1>');
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 const PORT = 3500;

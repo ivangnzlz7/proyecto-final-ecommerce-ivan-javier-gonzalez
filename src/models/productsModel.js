@@ -15,7 +15,7 @@ const dataPath = path.join(__dirname, '../data/products.json');
 const productsCollection = collection(db, 'products');
 
 /*
-//Ordena los productos
+Ordena los productos
 function orderProduct(){
     const products = getAllProducts();
     products.sort((a, b) => a.id - b.id);
@@ -28,6 +28,7 @@ export async function getProductById(id) {
     const product = productDocs.find( product => product.id === id ) || null
     return product;
     /*
+    Obtenemos el id del producto de manera local
     const products = getAllProducts();
     return products.find( product => product.id === id );
     */
@@ -43,6 +44,7 @@ export async function getAllProducts(){
     return products;
     // Todos los productos localmente
     /*
+    Obtenemos los productos de manera local
     const data = fs.readFileSync(dataPath, 'utf-8');
     return JSON.parse(data);
     */
@@ -64,8 +66,10 @@ export async function saveProduct(product){
         //Guardamos en firebase
         await addDoc(productsCollection, productSave); 
         /*
-        // Guardamos localmente
-        fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));*/
+        Guardamos localmente
+        fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));
+        return productSave;
+        */
         return productSave;
     
 };
@@ -82,6 +86,7 @@ export async function deleteByProduct(id){
     
     await deleteDoc(doc(productsCollection, id))
     /*
+    Eliminamos el producto y guardamos localmente
     fs.writeFileSync(dataPath, JSON.stringify(productJson, null, 2));
     return productJson;*/
 }

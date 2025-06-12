@@ -30,8 +30,23 @@ export const productById = async (req, res) => {
 }
 
 export const createProduct = async (req, res) => {
-    
+
     const { name, price, stock, category } = req.body;
+    const products = await getAllProducts();
+    const productExist = products.find( product => product.name == name );
+    
+    //Verificamos que el producto no sea el mismo
+    if(productExist){
+        res.status(400).json({message: 'No puede crear el mismo producto.'})
+        return;
+    }
+    
+    // Verificamos que envien todos los datos
+    if(!name || !price || !stock || !category){
+        res.status(400).json({message: 'Todos los campos son obligatorios.'})
+        return;
+    }
+
     const product = {
         name,
         price,
@@ -70,6 +85,11 @@ export const deleteProductById = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     const { name, price, category, stock } = req.body;
+
+    if(!name || !price || !stock || !category){
+        res.status(400).json({message: 'Todos los campos son obligatorios.'})
+        return;
+    }
     const id = req.params.id
     const productForm = {
         id,
@@ -82,7 +102,7 @@ export const updateProduct = async (req, res) => {
         const product = await productUpdate(productForm);
         res.status(200).json(product)
     } catch (error) {
-        res.status(404).json({message : 'No se pudo realizar la operacion'})
+        res.status(500).json({message : 'No se pudo realizar la operacion'})
     }
 }
 
