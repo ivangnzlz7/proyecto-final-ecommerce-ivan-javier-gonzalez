@@ -29,7 +29,11 @@ export const registerUser = async (req, res) => {
         email,
         password
     }
-
+    if(!name || !email || !password){
+        res.status(404).json({message: 'Todos los campos son obligatorios'});
+        return;
+    }
+    
     try {
             await userRegister(user);
             res.status(201).json({message: 'Se creo exitosamente'})
