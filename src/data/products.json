@@ -33,11 +33,5 @@
     "name": "Iphone 10 green",
     "stock": 12,
     "category": "apple"
-  },
-  {
-    "name": "Samsung galaxi A03",
-    "price": 209800,
-    "category": "samsung",
-    "stock": 15
   }
 ]

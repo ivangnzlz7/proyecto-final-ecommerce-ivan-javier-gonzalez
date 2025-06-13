@@ -14,64 +14,50 @@ const __dirname = import.meta.dirname;
 const dataPath = path.join(__dirname, '../data/products.json');
 const productsCollection = collection(db, 'products');
 
-/*
-Ordena los productos
-function orderProduct(){
-    const products = getAllProducts();
-    products.sort((a, b) => a.id - b.id);
+
+// Ordena los productos por stock de forma ascendente
+async function orderProduct(){
+    const products = await getAllProducts();
+    products.sort((a, b) => a.stock - b.stock);
     fs.writeFileSync(dataPath, JSON.stringify(products, null, 2))
 }
-*/
+
 
 export async function getProductById(id) {
     const productDocs = await getAllProducts();
-    const product = productDocs.find( product => product.id === id ) || null
-    return product;
-    /*
-    Obtenemos el id del producto de manera local
-    const products = getAllProducts();
-    return products.find( product => product.id === id );
-    */
+    return productDocs.find( product => product.id === id ) || null
 }
 
 export async function getAllProducts(){
-
     const querySnapShot = await getDocs(productsCollection)
     const products = [];
     querySnapShot.forEach( doc => {
         products.push({id: doc.id, ...doc.data()});
     })
+    // sino hay nada en la base de datos, devuelve los productos localmente
+    if(products.length < 1){
+        const data = fs.readFileSync(dataPath, 'utf-8');
+        return JSON.parse(data);
+    }
     return products;
-    // Todos los productos localmente
-    /*
-    Obtenemos los productos de manera local
-    const data = fs.readFileSync(dataPath, 'utf-8');
-    return JSON.parse(data);
-    */
 }
 
 export async function saveProduct(product){
-
     const { name, price, category, stock } = product;
-    // const products = await getAllProducts();
+    const products = await getAllProducts();
     const productSave = {
         name,
         price,
         category,
         stock 
     }
-    /*
-    products.push(productSave); */
-    
-        //Guardamos en firebase
-        await addDoc(productsCollection, productSave); 
-        /*
-        Guardamos localmente
-        fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));
-        return productSave;
-        */
-        return productSave;
-    
+    products.push(productSave); 
+    //Guardamos localmente y ordenamos
+    fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));
+    orderProduct();
+    //Guardamos en firebase
+    await addDoc(productsCollection, productSave); 
+    return productSave;
 };
 
 export async function productByCategory(category){
@@ -80,15 +66,7 @@ export async function productByCategory(category){
 }
 
 export async function deleteByProduct(id){
-    /*
-    const products = await getAllProducts();
-    const productJson = products.filter( product => product.id !== id ); */
-    
-    await deleteDoc(doc(productsCollection, id))
-    /*
-    Eliminamos el producto y guardamos localmente
-    fs.writeFileSync(dataPath, JSON.stringify(productJson, null, 2));
-    return productJson;*/
+    return await deleteDoc(doc(productsCollection, id))
 }
 
 export async function updateProduct(products){
@@ -102,15 +80,7 @@ export async function updateProduct(products){
         category,
         stock
     }
-    const product =  await saveProduct(newProduct);
-    return product;
-    /*
-    const productsFilter = products.filter( product => product.id !== id );
-    productsFilter.push(productUpdate);
-    fs.writeFileSync(dataPath, JSON.stringify(productsFilter, null, 2));
-    //Ordenamos los productos
-    orderProduct();
-    return productUpdate;*/
+    return await saveProduct(newProduct);
 }
 
 export async function partialProductUpdate(products){
@@ -125,18 +95,9 @@ export async function partialProductUpdate(products){
         category: category || product.category,
         stock: stock || product.stock
     }
-
     //Eliminamos el producto 
     await deleteByProduct(id);
 
-    //Creamos el producto
-    const producto = await saveProduct(producPartial);
-    return producto;
-    /*
-    const productFilter = products.filter( product => product.id !== id );
-    productFilter.push(producPartial)
-    fs.writeFileSync(dataPath, JSON.stringify(productFilter, null, 2));
-    // Ordenamos los productos
-    orderProduct();
-    return producPartial; */
+    //Creamos el producto y devolvemos
+    return await saveProduct(producPartial);
 }
