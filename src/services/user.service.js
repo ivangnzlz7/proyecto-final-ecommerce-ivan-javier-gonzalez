@@ -5,8 +5,7 @@ export const getAllUser = () => {
 }
 
 export const userRegister = user => {
-    const { name, email, password } = user;
-    return userService.registerUser(name, email, password)
+    return userService.registerUser(user) 
 }
 
 export const userCheck = email => {

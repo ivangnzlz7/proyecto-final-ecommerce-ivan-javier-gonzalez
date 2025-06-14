@@ -20,6 +20,10 @@ export const usersAll = async (req , res) => {
 export const registerUser = async (req, res) => {
     const { name, email, password } = req.body
     const userExist = await checkUsers(email);
+    if(!name || !email || !password){
+        res.status(404).json({message: 'Todos los campos son obligatorios'});
+        return;
+    }
     if(userExist){
         res.status(404).json({message: 'Ya existe un usuario'})
         return;
@@ -29,16 +33,12 @@ export const registerUser = async (req, res) => {
         email,
         password
     }
-    if(!name || !email || !password){
-        res.status(404).json({message: 'Todos los campos son obligatorios'});
-        return;
-    }
     
     try {
-            await userRegister(user);
-            res.status(201).json({message: 'Se creo exitosamente'})
-    } catch (error) {
-            res.status(500).json({message: 'Error al crear el usuario'})
+        await userRegister(user);
+        res.status(201).json({message: 'Se creo exitosamente'})
+    } catch (err) {
+        res.status(500).json({message: 'Hubo un error inesperado'})
     }
 }
 
