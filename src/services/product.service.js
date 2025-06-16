@@ -17,6 +17,10 @@ export const categoryByProduct = category => {
     return serviceProduct.productByCategory(category);
 }
 
+export const priceByProduct = ( max, min ) => {
+    return serviceProduct.productByPrice(max, min);
+}
+
 export const productDeleteById = id => {
     return serviceProduct.deleteByProduct(id);
 }

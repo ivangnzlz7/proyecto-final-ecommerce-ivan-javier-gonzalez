@@ -6,6 +6,7 @@ import {
     productById,
     createProduct,
     productByCategory,
+    productByPrice,
     deleteProductById,
     updateProduct,
     partialUpdateProduct
@@ -18,6 +19,8 @@ routes.get('/products/:id', productById);
 routes.post('/products', createProduct);
 
 routes.get('/products-category', productByCategory);
+
+routes.get('/products-price', productByPrice)
 
 routes.patch('/products/:id', partialUpdateProduct);
 

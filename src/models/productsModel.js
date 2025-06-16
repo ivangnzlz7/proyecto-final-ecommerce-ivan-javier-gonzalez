@@ -65,6 +65,13 @@ export async function productByCategory(category){
     return products.filter( product => product.category == category );
 }
 
+export async function productByPrice(max, min) {
+    const products = await getAllProducts();
+    return products.filter( product => {
+        return product.price >= min && product.price <= max
+    })
+}
+
 export async function deleteByProduct(id){
     return await deleteDoc(doc(productsCollection, id))
 }

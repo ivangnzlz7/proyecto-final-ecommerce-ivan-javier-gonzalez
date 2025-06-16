@@ -52,3 +52,4 @@ export const checkUser = async (req, res) => {
         res.status(400).json({message: 'No se encontro ningun usuario'})
     }
 }
+

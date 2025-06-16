@@ -3,6 +3,7 @@ import {
     byIdProduct,
     productCreate,
     categoryByProduct,
+    priceByProduct,
     productDeleteById,
     productUpdate,
     updatePartialProduct
@@ -69,6 +70,22 @@ export const productByCategory = async(req, res) => {
         res.status(200).json(products);
     } catch (error) {
         res.status(404).json({ message: 'Ningun producto se encontro' });
+    }
+}
+
+export const productByPrice = async(req, res) => {
+    const { min, max } = req.query
+    const maxPrice = Number(max);
+    const minPrice = Number(min);
+    if(maxPrice === NaN || minPrice === NaN){
+        res.status(400).json({message: 'Debe enviar un numero'});
+        return
+    }
+    try {
+        const products = await priceByProduct(max, min);
+        res.status(200).json(products)
+    } catch (error) {
+        res.status(500).json({message: 'Hubo un error en el proceso'})
     }
 }
 
