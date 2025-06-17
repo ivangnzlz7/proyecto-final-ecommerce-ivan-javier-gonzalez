@@ -6,7 +6,8 @@ import {
     getDocs,
     addDoc,
     deleteDoc,
-    doc
+    doc,
+    updateDoc,
 } from 'firebase/firestore';
 
 const __dirname = import.meta.dirname;
@@ -25,7 +26,9 @@ async function orderProduct(){
 
 export async function getProductById(id) {
     const productDocs = await getAllProducts();
-    return productDocs.find( product => product.id === id ) || null
+    return productDocs.find( product => {
+        return product.id == id
+    }) || null
 }
 
 export async function getAllProducts(){
@@ -78,16 +81,15 @@ export async function deleteByProduct(id){
 
 export async function updateProduct(products){
     const {id, name, price, category, stock } = products
-    // Eliminamos el producto
-    await deleteByProduct(id);
-    // Creamos el producto apartir del producto borrado
+    // Actualizamos el producto por ID
     const newProduct = {
+        category,
         name,
         price,
-        category,
         stock
     }
-    return await saveProduct(newProduct);
+    return await updateDoc(doc(productsCollection, id), newProduct);
+    
 }
 
 export async function partialProductUpdate(products){
@@ -97,14 +99,11 @@ export async function partialProductUpdate(products){
     
     // Actualizamos parcialmente
     const producPartial = {
+        id,
         name: name || product.name,
         price: price || product.price,
         category: category || product.category,
         stock: stock || product.stock
     }
-    //Eliminamos el producto 
-    await deleteByProduct(id);
-
-    //Creamos el producto y devolvemos
-    return await saveProduct(producPartial);
+    return await updateProduct(producPartial);
 }

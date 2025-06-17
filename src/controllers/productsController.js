@@ -102,12 +102,12 @@ export const deleteProductById = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     const { name, price, category, stock } = req.body;
+    const id = req.params.id
 
     if(!name || !price || !stock || !category){
         res.status(400).json({message: 'Todos los campos son obligatorios.'})
         return;
     }
-    const id = req.params.id
     const productForm = {
         id,
         name,
@@ -116,10 +116,10 @@ export const updateProduct = async (req, res) => {
         stock
     }
     try {
-        const product = await productUpdate(productForm);
-        res.status(200).json(product)
-    } catch (error) {
-        res.status(500).json({message : 'No se pudo realizar la operacion'})
+        await productUpdate(productForm);
+        res.status(200).json({message: 'Se ha actualizado correctamente'});
+    } catch (err) {
+        res.status(500).json({message : err.message});
     }
 }
 
@@ -135,8 +135,8 @@ export const partialUpdateProduct = async (req, res) => {
     }
 
     try {
-        const product = await updatePartialProduct(productPartial);
-        res.status(200).json(product);
+        await updatePartialProduct(productPartial);
+        res.status(200).json({message: 'Se ha actualizado correctamente'});
     } catch (error) {
         res.status(404).json({message: 'No se encontro el producto'})
     }
