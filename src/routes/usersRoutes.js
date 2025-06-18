@@ -8,6 +8,6 @@ const routes = express.Router();
 
 routes.post('/register', registerUser);
 
-routes.post('/check-user', checkUser);
+routes.get('/check-user', checkUser);
 
 export default routes; 
