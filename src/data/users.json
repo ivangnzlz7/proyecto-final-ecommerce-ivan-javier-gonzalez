@@ -1,26 +1,3 @@
 [
-  {
-    "id": 1,
-    "name": "javier",
-    "email": "javi@gmail.com",
-    "password": "12342135"
-  },
-  {
-    "id": 2,
-    "name": "nerea",
-    "email": "nerea@gmail.com",
-    "password": "7635235"
-  },
-  {
-    "id": 4,
-    "name": "silvana",
-    "email": "sil42@gmail.com",
-    "password": "ropa2025"
-  },
-  {
-    "id": 7,
-    "name": "walter",
-    "email": "wally@gmail.com",
-    "password": "loco22"
-  }
+  
 ]

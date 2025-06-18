@@ -1,5 +1,3 @@
-import fs from 'fs';
-import path from 'path';
 import { db } from '../data/data.js'
 import {
     collection,
@@ -7,37 +5,25 @@ import {
     addDoc
 } from 'firebase/firestore';
 
-const __dirname = import.meta.dirname;
-const userPath = path.join(__dirname, '../data/users.json');
 const usersCollection = collection(db, 'users');
 
 export async function registerUser(user){
     const { name, email, password } = user;
-    const users = await allUSer();
     const createUser = {
         name,
         email, 
         password
     };
-        
-    //Guardamos el usuario creado localmente
-    users.push(createUser);
-    fs.writeFileSync(userPath, JSON.stringify(users, null, 2));
     // Creamos el usuario
     return await addDoc(usersCollection, createUser);
 }
 
-export async function allUSer(){
+async function allUSer(){
     const querySnapShot = await getDocs(usersCollection)
     const users = [];
     querySnapShot.forEach( doc => {
         users.push({id: doc.id, ...doc.data()});
     })
-    if(users.length < 1){
-        // Obtenemos todos los usuarios localmente
-        const data = fs.readFileSync(userPath, 'utf-8');  
-        return JSON.parse(data);
-    }
     return users;
 }
 

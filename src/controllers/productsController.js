@@ -27,7 +27,11 @@ export const productById = async (req, res) => {
         res.status(404).json({ message: 'Producto no encontrado' });
         return;
     }
-    res.status(200).json(product);
+    try {
+        res.status(200).json(product);
+    } catch (error) {
+        res.status(500).json({message: 'Hubo un error en el proceso de carga'})
+    }
 }
 
 export const createProduct = async (req, res) => {
