@@ -17,7 +17,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Rutas
 app.use('/user', users);
 app.use('/auth', authRouter);
-app.use('/api', authentication, productsRouter);
+app.use('/api',/* authentication,*/ productsRouter);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));

@@ -1,33 +1,42 @@
-import * as serviceProduct from '../models/productsModel.js';
+import {
+    allProductsGet,
+    getProductById,
+    productByCategory,
+    saveProduct,
+    productByPrice,
+    deleteByProduct,
+    updateProduct,
+    partialProductUpdate
+} from '../models/productsModel.js';
 
 export const getAllProducts = () => {
-    return serviceProduct.getAllProducts();
+    return allProductsGet();
 };
 
 export const byIdProduct = id => {
-    return serviceProduct.getProductById(id);
+    return getProductById(id);
 };
 
 export const productCreate = product => {
-    return serviceProduct.saveProduct(product);
+    return saveProduct(product);
 };
 
 export const categoryByProduct = category => {
-    return serviceProduct.productByCategory(category);
+    return productByCategory(category);
 };
 
 export const priceByProduct = ( max, min ) => {
-    return serviceProduct.productByPrice(max, min);
+    return productByPrice(max, min);
 };
 
 export const productDeleteById = id => {
-    return serviceProduct.deleteByProduct(id);
+    return deleteByProduct(id);
 };
 
 export const productUpdate = product => {
-    return serviceProduct.updateProduct(product);
+    return updateProduct(product);
 };
 
 export const updatePartialProduct = product => {
-    return serviceProduct.partialProductUpdate(product);
+    return partialProductUpdate(product);
 };

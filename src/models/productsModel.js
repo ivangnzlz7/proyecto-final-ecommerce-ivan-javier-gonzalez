@@ -25,13 +25,13 @@ async function orderProduct(){
 
 
 export async function getProductById(id) {
-    const productDocs = await getAllProducts();
+    const productDocs = await allProductsGet();
     return productDocs.find( product => {
         return product.id == id
     }) || null
 }
 
-export async function getAllProducts(){
+export async function allProductsGet(){
     const querySnapShot = await getDocs(productsCollection);
     const products = [];
     querySnapShot.forEach( doc => {
@@ -47,7 +47,7 @@ export async function getAllProducts(){
 
 export async function saveProduct(product){
     const { name, price, category, stock } = product;
-    const products = await getAllProducts();
+    const products = await allProductsGet();
     const productSave = {
         name,
         price,
@@ -64,12 +64,12 @@ export async function saveProduct(product){
 };
 
 export async function productByCategory(category){
-    const products = await getAllProducts();
+    const products = await allProductsGet();
     return products.filter( product => product.category == category );
 }
 
 export async function productByPrice(max, min) {
-    const products = await getAllProducts();
+    const products = await allProductsGet();
     return products.filter( product => {
         return product.price >= min && product.price <= max
     });

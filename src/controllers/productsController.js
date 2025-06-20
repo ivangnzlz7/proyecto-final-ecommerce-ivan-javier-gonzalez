@@ -9,7 +9,7 @@ import {
     updatePartialProduct
 } from '../services/product.service.js'
 
-export const allProdcuts = async (req, res) => {
+export const allProducts = async (req, res) => {
     try {
         const products = await getAllProducts();
         res.status(200).json(products);

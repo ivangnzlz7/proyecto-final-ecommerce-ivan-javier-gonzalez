@@ -1,6 +1,7 @@
 import express from 'express';
+const routes = express.Router();
 import {
-    allProdcuts,
+    allProducts,
     productById,
     createProduct,
     productByCategory,
@@ -9,9 +10,8 @@ import {
     updateProduct,
     partialUpdateProduct
 } from '../controllers/productsController.js';
-const routes = express.Router();
 
-routes.get('/products', allProdcuts);
+routes.get('/products', allProducts);
 
 routes.get('/products/:id', productById);
 

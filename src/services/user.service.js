@@ -1,9 +1,12 @@
-import * as userService from '../models/usersModel.js';
+import { 
+    registerUser, 
+    checkUsers 
+}from '../models/usersModel.js';
 
 export const userRegister = user => {
-    return userService.registerUser(user); 
+    return registerUser(user); 
 };
 
 export const userCheck = email => {
-    return userService.checkUsers(email);
+    return checkUsers(email);
 };
