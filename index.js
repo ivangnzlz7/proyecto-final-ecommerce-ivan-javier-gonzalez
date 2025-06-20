@@ -15,8 +15,8 @@ app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas
-app.use('/user', users)
-app.use('/auth', authRouter)
+app.use('/user', users);
+app.use('/auth', authRouter);
 app.use('/api', authentication, productsRouter);
 
 app.get('/', (req, res) => {
@@ -25,4 +25,4 @@ app.get('/', (req, res) => {
 
 const PORT = 3500;
 
-app.listen(PORT, () => console.log(`http://localhost:${PORT}`))
+app.listen(PORT, () => console.log(`http://localhost:${PORT}`));

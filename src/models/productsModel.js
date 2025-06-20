@@ -20,7 +20,7 @@ const productsCollection = collection(db, 'products');
 async function orderProduct(){
     const products = await getAllProducts();
     products.sort((a, b) => a.stock - b.stock);
-    fs.writeFileSync(dataPath, JSON.stringify(products, null, 2))
+    fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));
 }
 
 
@@ -32,7 +32,7 @@ export async function getProductById(id) {
 }
 
 export async function getAllProducts(){
-    const querySnapShot = await getDocs(productsCollection)
+    const querySnapShot = await getDocs(productsCollection);
     const products = [];
     querySnapShot.forEach( doc => {
         products.push({id: doc.id, ...doc.data()});
@@ -41,7 +41,7 @@ export async function getAllProducts(){
     if(products.length < 1){
         const data = fs.readFileSync(dataPath, 'utf-8');
         return JSON.parse(data);
-    }
+    };
     return products;
 }
 
@@ -53,7 +53,7 @@ export async function saveProduct(product){
         price,
         category,
         stock 
-    }
+    };
     products.push(productSave); 
     //Guardamos localmente y ordenamos
     fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));
@@ -72,32 +72,29 @@ export async function productByPrice(max, min) {
     const products = await getAllProducts();
     return products.filter( product => {
         return product.price >= min && product.price <= max
-    })
+    });
 }
 
 export async function deleteByProduct(id){
-    return await deleteDoc(doc(productsCollection, id))
+    return await deleteDoc(doc(productsCollection, id));
 }
 
 export async function updateProduct(products){
-    const {id, name, price, category, stock } = products
-    // Actualizamos el producto por ID
+    const {id, name, price, category, stock } = products;
     const newProduct = {
         category,
         name,
         price,
         stock
-    }
+    };
+    // Actualizamos el producto por ID
     return await updateDoc(doc(productsCollection, id), newProduct);
-    
 }
 
 export async function partialProductUpdate(products){
-    const { id, name, price, category, stock } = products
+    const { id, name, price, category, stock } = products;
     //Buscamos el producto
-    const product = await getProductById(id)
-    
-    // Actualizamos parcialmente
+    const product = await getProductById(id);
     const producPartial = {
         id,
         name: name || product.name,
@@ -105,5 +102,6 @@ export async function partialProductUpdate(products){
         category: category || product.category,
         stock: stock || product.stock
     }
+    // Actualizamos parcialmente
     return await updateProduct(producPartial);
 }

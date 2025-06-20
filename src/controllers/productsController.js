@@ -10,12 +10,11 @@ import {
 } from '../services/product.service.js'
 
 export const allProdcuts = async (req, res) => {
-    
     try {
         const products = await getAllProducts();
         res.status(200).json(products);
     } catch (err) {
-        res.status(500).json({error: 'Internal server error'})
+        res.status(500).json({error: 'Internal server error'});
     }
 }
 
@@ -30,7 +29,7 @@ export const productById = async (req, res) => {
     try {
         res.status(200).json(product);
     } catch (error) {
-        res.status(500).json({message: 'Hubo un error en el proceso de carga'})
+        res.status(500).json({message: 'Hubo un error en el proceso de carga'});
     }
 }
 
@@ -42,15 +41,15 @@ export const createProduct = async (req, res) => {
     
     //Verificamos que el producto no sea el mismo
     if(productExist){
-        res.status(400).json({message: 'No puede crear el mismo producto.'})
+        res.status(400).json({message: 'No puede crear el mismo producto.'});
         return;
-    }
+    };
     
     // Verificamos que envien todos los datos
     if(!name || !price || !stock || !category){
-        res.status(400).json({message: 'Todos los campos son obligatorios.'})
+        res.status(400).json({message: 'Todos los campos son obligatorios.'});
         return;
-    }
+    };
 
     const product = {
         name,
@@ -59,10 +58,10 @@ export const createProduct = async (req, res) => {
         category
     };    
     try {
-        const newProduct = await productCreate(product)
+        const newProduct = await productCreate(product);
         res.status(201).json(newProduct);
     } catch (err) {
-        res.status(500).json({error: 'Internal server error'})
+        res.status(500).json({error: 'Internal server error'});
     }
 }
 
@@ -70,7 +69,7 @@ export const productByCategory = async(req, res) => {
     const category = req.query.category;
    
     try {
-        const products = await categoryByProduct(category)
+        const products = await categoryByProduct(category);
         res.status(200).json(products);
     } catch (error) {
         res.status(404).json({ message: 'Ningun producto se encontro' });
@@ -78,18 +77,18 @@ export const productByCategory = async(req, res) => {
 }
 
 export const productByPrice = async(req, res) => {
-    const { min, max } = req.query
+    const { min, max } = req.query;
     const maxPrice = Number(max);
     const minPrice = Number(min);
     if(maxPrice === NaN || minPrice === NaN){
         res.status(400).json({message: 'Debe enviar un numero'});
-        return
-    }
+        return;
+    };
     try {
         const products = await priceByProduct(max, min);
-        res.status(200).json(products)
+        res.status(200).json(products);
     } catch (error) {
-        res.status(500).json({message: 'Hubo un error en el proceso'})
+        res.status(500).json({message: 'Hubo un error en el proceso'});
     }
 }
 
@@ -106,10 +105,10 @@ export const deleteProductById = async (req, res) => {
 
 export const updateProduct = async (req, res) => {
     const { name, price, category, stock } = req.body;
-    const id = req.params.id
+    const id = req.params.id;
 
     if(!name || !price || !stock || !category){
-        res.status(400).json({message: 'Todos los campos son obligatorios.'})
+        res.status(400).json({message: 'Todos los campos son obligatorios.'});
         return;
     }
     const productForm = {
@@ -118,7 +117,7 @@ export const updateProduct = async (req, res) => {
         price,
         category,
         stock
-    }
+    };
     try {
         await productUpdate(productForm);
         res.status(200).json({message: 'Se ha actualizado correctamente'});
@@ -142,6 +141,6 @@ export const partialUpdateProduct = async (req, res) => {
         await updatePartialProduct(productPartial);
         res.status(200).json({message: 'Se ha actualizado correctamente'});
     } catch (error) {
-        res.status(404).json({message: 'No se encontro el producto'})
+        res.status(404).json({message: 'No se encontro el producto'});
     }
 }

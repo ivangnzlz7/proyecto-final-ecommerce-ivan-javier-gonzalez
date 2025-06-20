@@ -1,6 +1,4 @@
-import express from 'express'
-const routes = express.Router()
-
+import express from 'express';
 import {
     allProdcuts,
     productById,
@@ -10,7 +8,8 @@ import {
     deleteProductById,
     updateProduct,
     partialUpdateProduct
-} from '../controllers/productsController.js'
+} from '../controllers/productsController.js';
+const routes = express.Router();
 
 routes.get('/products', allProdcuts);
 
@@ -20,7 +19,7 @@ routes.post('/products', createProduct);
 
 routes.get('/products-category', productByCategory);
 
-routes.get('/products-price', productByPrice)
+routes.get('/products-price', productByPrice);
 
 routes.patch('/products/:id', partialUpdateProduct);
 
@@ -29,4 +28,4 @@ routes.put('/products/:id', updateProduct);
 routes.delete('/products/:id', deleteProductById);
 
 
-export default routes
+export default routes;

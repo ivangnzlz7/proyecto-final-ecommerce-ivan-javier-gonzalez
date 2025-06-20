@@ -19,7 +19,7 @@ export async function registerUser(user){
 }
 
 async function allUSer(){
-    const querySnapShot = await getDocs(usersCollection)
+    const querySnapShot = await getDocs(usersCollection);
     const users = [];
     querySnapShot.forEach( doc => {
         users.push({id: doc.id, ...doc.data()});
