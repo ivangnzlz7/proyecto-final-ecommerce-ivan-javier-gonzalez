@@ -6,8 +6,10 @@ import {
 
 const routes = express.Router();
 
+// Crea el usuario
 routes.post('/register', registerUser);
 
-routes.get('/check-user', checkUser);
+// Verifica el usuario por email
+routes.post('/check-user', checkUser);
 
 export default routes; 

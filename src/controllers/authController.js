@@ -13,5 +13,5 @@ export async function login(req, res) {
         res.json({token});
     } else {
         res.status(401).json({ 'message': 'Unauthorized' });
-    }
-}
+    };
+};

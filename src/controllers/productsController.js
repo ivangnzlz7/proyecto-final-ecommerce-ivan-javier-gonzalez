@@ -7,7 +7,7 @@ import {
     productDeleteById,
     productUpdate,
     updatePartialProduct
-} from '../services/product.service.js'
+} from '../services/product.service.js';
 
 export const allProducts = async (req, res) => {
     try {
@@ -16,7 +16,7 @@ export const allProducts = async (req, res) => {
     } catch (err) {
         res.status(500).json({error: 'Internal server error'});
     }
-}
+};
 
 export const productById = async (req, res) => {
     const id = req.params.id;
@@ -31,7 +31,7 @@ export const productById = async (req, res) => {
     } catch (error) {
         res.status(500).json({message: 'Hubo un error en el proceso de carga'});
     }
-}
+};
 
 export const createProduct = async (req, res) => {
 
@@ -63,7 +63,7 @@ export const createProduct = async (req, res) => {
     } catch (err) {
         res.status(500).json({error: 'Internal server error'});
     }
-}
+};
 
 export const productByCategory = async(req, res) => {
     const category = req.query.category;
@@ -74,7 +74,7 @@ export const productByCategory = async(req, res) => {
     } catch (error) {
         res.status(404).json({ message: 'Ningun producto se encontro' });
     }
-}
+};
 
 export const productByPrice = async(req, res) => {
     const { min, max } = req.query;
@@ -90,7 +90,7 @@ export const productByPrice = async(req, res) => {
     } catch (error) {
         res.status(500).json({message: 'Hubo un error en el proceso'});
     }
-}
+};
 
 export const deleteProductById = async (req, res) => {
     const id = req.params.id;
@@ -101,7 +101,7 @@ export const deleteProductById = async (req, res) => {
     } catch (error) {
         res.status(404).json({message: 'Algo fallo al eliminar el producto'});
     }
-}
+};
 
 export const updateProduct = async (req, res) => {
     const { name, price, category, stock } = req.body;
@@ -124,7 +124,7 @@ export const updateProduct = async (req, res) => {
     } catch (err) {
         res.status(500).json({message : err.message});
     }
-}
+};
 
 export const partialUpdateProduct = async (req, res) => {
     const { name, price, category, stock } = req.body;
@@ -143,4 +143,4 @@ export const partialUpdateProduct = async (req, res) => {
     } catch (error) {
         res.status(404).json({message: 'No se encontro el producto'});
     }
-}
+};

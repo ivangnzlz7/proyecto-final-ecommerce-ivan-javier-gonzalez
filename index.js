@@ -3,6 +3,7 @@ import productsRouter from './src/routes/productsRoutes.js';
 import authRouter from './src/routes/auth.routes.js';
 import bodyParser from 'body-parser';
 import { authentication } from './src/middlewares/authentication.js';
+import { undefinedRoute } from './src/middlewares/routeUndefined.js';
 import users from './src/routes/usersRoutes.js';
 import cors from 'cors';
 import path from 'path';
@@ -18,10 +19,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/user', users);
 app.use('/auth', authRouter);
 app.use('/api', authentication, productsRouter);
+app.use(undefinedRoute);
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
 
 const PORT = 3500;
 

@@ -1,9 +1,9 @@
 import {
     userRegister,
     userCheck
-} from '../services/user.service.js'
+} from '../services/user.service.js';
 
-import { checkUsers } from '../models/usersModel.js'
+import { checkUsers } from '../models/usersModel.js';
 
 export const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
@@ -37,7 +37,7 @@ export const registerUser = async (req, res) => {
     } catch (err) {
         res.status(500).json({message: 'Hubo un error inesperado'});
     }
-}
+};
 
 export const checkUser = async (req, res) => {
     const email = req.body.email;
@@ -48,5 +48,5 @@ export const checkUser = async (req, res) => {
     } catch (error) {
         res.status(400).json({message: 'No se encontro ningun usuario'});
     }
-}
+};
 
