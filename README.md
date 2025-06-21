@@ -15,7 +15,7 @@ Javascript
 
 Autenticacion
 
-Su uso requiere autenticacion por medio de POST user/register. Una vez creado el usuario, necesita loguearse por medio de GET auth/login. Despues de loguearse le dara un token para usar la api con operaciones basicas y busquedas.
+Su uso requiere autenticacion por medio de POST user/register. Una vez creado el usuario, necesita loguearse por medio de POST auth/login. Despues de loguearse le dara un token para usar la api con operaciones basicas y busquedas.
 
 
 
