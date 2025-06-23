@@ -10,9 +10,9 @@ import path from 'path';
 
 const __dirname = import.meta.dirname;
 const app = express();
+app.use(cors());
 app.use(express.json());
 app.use(bodyParser.json());
-app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //Rutas
