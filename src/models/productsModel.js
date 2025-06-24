@@ -18,7 +18,7 @@ const productsCollection = collection(db, 'products');
 
 // Ordena los productos por stock de forma ascendente
 async function orderProduct(){
-    const products = await getAllProducts();
+    const products = await allProductsGet();
     products.sort((a, b) => a.stock - b.stock);
     fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));
 }
