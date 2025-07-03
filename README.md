@@ -84,7 +84,7 @@ El comando `npm run start` ejecuta el programa
 
 - **URL**: `POST api/products/create`
 - **Descripcion**: Crea un producto
--- **Cuerpo de la solicitud**:
+- **Cuerpo de la solicitud**:
  ```json
     {
         "name": "Iphone PRO MAX blue 10",
