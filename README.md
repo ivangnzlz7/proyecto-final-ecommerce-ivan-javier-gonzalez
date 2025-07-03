@@ -85,7 +85,7 @@ El comando `npm run start` ejecuta el programa
 - **URL**: `POST api/products/create`
 - **Descripcion**: Crea un producto
 - **Cuerpo de la solicitud**:
- ```json
+  ```json
     {
         "name": "Iphone PRO MAX blue 10",
         "price": 220980,
@@ -108,7 +108,7 @@ El comando `npm run start` ejecuta el programa
 - **URL**: `PUT api/products/{id}`
 - **Descripcion**: Actualiza todo el producto por ID
 - **Cuerpo de la solicitud**:
-```json
+  ```json
     {
         "category": "category",
         "name": "name",
@@ -129,7 +129,7 @@ El comando `npm run start` ejecuta el programa
 - **URL**: `PATCH api/products/{id}`
 - **Descripcion**: Actualiza parcialmente el producto por ID
 - **Cuerpo de la solicitud**:
-```json
+  ```json
     {
         "category": "category",
         "name": "name",
@@ -220,7 +220,7 @@ El comando `npm run start` ejecuta el programa
     }
   ```
 - **Respuesta exitosa**:
-```json
+  ```json
     {
         "message": "Se creo exitosamente"
     }
@@ -238,7 +238,7 @@ El comando `npm run start` ejecuta el programa
     }
   ```
 - **Respuesta exitosa**:
-```json
+  ```json
     {
         "email": "Tu email",
         "name": "Tu name",
@@ -268,11 +268,11 @@ Su uso requiere autenticacion por medio de `POST user/register`. Una vez creado 
     }
   ```
 - **Respuesta exitosa**:
-```json
+  ```json
     {
         "token": "Tu token"
     }
-```
+  ```
 
 
 
