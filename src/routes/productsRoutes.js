@@ -10,29 +10,35 @@ import {
     updateProduct,
     partialUpdateProduct
 } from '../controllers/productsController.js';
+import { authentication } from '../middlewares/authentication.js'
 
-// Obtiene todo los productos
+/* Rutas publicas */
+ 
+// Obtiene todos los productos
 routes.get('/products', allProducts);
 
 // Obtiene un producto por ID
 routes.get('/products/:id', productById);
 
-// Crea un producto
-routes.post('/products/create', createProduct);
-
-// Obtiene productos por categoria
+// Filtra productos por categoria
 routes.get('/products-category', productByCategory);
 
-// Obtiene productos por precio
+// Filtra productos por precio
 routes.get('/products-price', productByPrice);
 
+
+/* Rutas con autorizacion */
+
+// Crea un producto
+routes.post('/products/create', authentication, createProduct);
+
 // Modifica parcialmente el producto por iD
-routes.patch('/products/:id', partialUpdateProduct);
+routes.patch('/products/:id', authentication, partialUpdateProduct);
 
 // Modifica totalmente el producto por ID
-routes.put('/products/:id', updateProduct);
+routes.put('/products/:id', authentication, updateProduct);
 
 // Elimina el producto por ID
-routes.delete('/products/:id', deleteProductById);
+routes.delete('/products/:id', authentication, deleteProductById);
 
 export default routes;

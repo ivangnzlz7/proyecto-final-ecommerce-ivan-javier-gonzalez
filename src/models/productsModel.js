@@ -21,15 +21,15 @@ async function orderProduct(){
     const products = await allProductsGet();
     products.sort((a, b) => a.stock - b.stock);
     fs.writeFileSync(dataPath, JSON.stringify(products, null, 2));
-}
+};
 
 
 export async function getProductById(id) {
     const productDocs = await allProductsGet();
     return productDocs.find( product => {
         return product.id == id
-    }) || null
-}
+    });
+};
 
 export async function allProductsGet(){
     const querySnapShot = await getDocs(productsCollection);
@@ -43,7 +43,7 @@ export async function allProductsGet(){
         return JSON.parse(data);
     };
     return products;
-}
+};
 
 export async function saveProduct(product){
     const { name, price, category, stock } = product;
@@ -66,30 +66,24 @@ export async function saveProduct(product){
 export async function productByCategory(category){
     const products = await allProductsGet();
     return products.filter( product => product.category == category );
-}
+};
 
 export async function productByPrice(max, min) {
     const products = await allProductsGet();
     return products.filter( product => {
         return product.price >= min && product.price <= max
     });
-}
+};
 
 export async function deleteByProduct(id){
     return await deleteDoc(doc(productsCollection, id));
-}
+};
 
 export async function updateProduct(products){
-    const {id, name, price, category, stock } = products;
-    const newProduct = {
-        category,
-        name,
-        price,
-        stock
-    };
+    const {id, ...props } = products;
     // Actualizamos el producto por ID
-    return await updateDoc(doc(productsCollection, id), newProduct);
-}
+    return await updateDoc(doc(productsCollection, id), props);
+};
 
 export async function partialProductUpdate(products){
     const { id, name, price, category, stock } = products;
@@ -104,4 +98,4 @@ export async function partialProductUpdate(products){
     }
     // Actualizamos parcialmente
     return await updateProduct(producPartial);
-}
+};

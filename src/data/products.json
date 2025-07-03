@@ -1,37 +1,37 @@
 [
   {
-    "id": "2k8QrkwwmSnJOhVH87h0",
-    "price": 929000,
+    "id": "qc8duxq9tfVHFjHiDwdv",
+    "stock": 8,
+    "name": "Samsung A012 Violet",
     "category": "apple",
-    "name": "Iphone 10 black",
-    "stock": 10
+    "price": 900000
   },
   {
-    "id": "A0YowfIDxzgqgTvv3IAo",
-    "stock": 8,
-    "name": "Iphone pro max 15 white",
-    "price": 909800,
-    "category": "apple"
-  },
-  {
-    "id": "IsbjEynFiT1jzUHfv2SM",
-    "name": "Iphone 11 white",
-    "stock": 8,
+    "id": "YLnYTioYKMlvoS5VGvT8",
+    "category": "apple",
+    "stock": 11,
     "price": 919000,
-    "category": "apple"
+    "name": "Iphone 12 blue front"
   },
   {
-    "id": "bMW5VkYH5kaHjZ2W4xKb",
+    "id": "wdqazZ8OoT398sO6aEd6",
+    "name": "Iphone PRO MAX blue 10",
+    "price": 220980,
     "category": "apple",
-    "price": 989000,
-    "stock": 6,
-    "name": "Iphone 16 blue"
+    "stock": 12
   },
   {
-    "id": "vN6KpvTfCwnWLUSQTgYO",
-    "price": 959000,
-    "name": "Iphone 10 green",
-    "stock": 12,
-    "category": "apple"
+    "id": "M96kchS0kcEzAJPQE0BD",
+    "category": "samsung",
+    "stock": 15,
+    "name": "samsung grey 10 front",
+    "price": 468000
+  },
+  {
+    "id": "X7nmsfHGGwqmcaFPYva0",
+    "stock": 20,
+    "name": "Samsung galaxi A04",
+    "category": "samsung",
+    "price": 20980.99
   }
 ]

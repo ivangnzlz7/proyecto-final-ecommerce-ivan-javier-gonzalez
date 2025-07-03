@@ -35,7 +35,7 @@ export const registerUser = async (req, res) => {
         await userRegister(user);
         res.status(201).json({message: 'Se creo exitosamente'});
     } catch (err) {
-        res.status(500).json({message: 'Hubo un error inesperado'});
+        res.status(500).json({message: err.message});
     }
 };
 
@@ -44,9 +44,12 @@ export const checkUser = async (req, res) => {
 
     try {
         const user = await userCheck(email);
+        if(!user){
+            res.status(400).json({message : 'No se encontro el usuario'});
+        };
         res.status(200).json(user);
     } catch (error) {
-        res.status(400).json({message: 'No se encontro ningun usuario'});
+        res.status(500).json({message: error.message});
     }
 };
 
