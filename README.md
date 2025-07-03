@@ -84,6 +84,15 @@ El comando `npm run start` ejecuta el programa
 
 - **URL**: `POST api/products/create`
 - **Descripcion**: Crea un producto
+-- **Cuerpo de la solicitud**:
+ ```json
+    {
+        "name": "Iphone PRO MAX blue 10",
+        "price": 220980,
+        "category": "apple",
+        "stock": 12
+    }
+  ```
 - **Respuesta exitosa**:
   ```json
     {
@@ -98,6 +107,16 @@ El comando `npm run start` ejecuta el programa
 
 - **URL**: `PUT api/products/{id}`
 - **Descripcion**: Actualiza todo el producto por ID
+- **Cuerpo de la solicitud**:
+```json
+    {
+        "category": "category",
+        "name": "name",
+        "price": "price",
+        "stock": "stock"
+    }
+  ```
+
 - **Respuesta exitosa**:
   ```json
     {
@@ -109,6 +128,16 @@ El comando `npm run start` ejecuta el programa
 
 - **URL**: `PATCH api/products/{id}`
 - **Descripcion**: Actualiza parcialmente el producto por ID
+- **Cuerpo de la solicitud**:
+```json
+    {
+        "category": "category",
+        "name": "name",
+        "price": "price",
+        "stock": "stock"
+    }
+  ```
+
 - **Respuesta exitosa**:
   ```json
     {
@@ -158,7 +187,7 @@ El comando `npm run start` ejecuta el programa
 - **Descripcion**: Obtiene aquellos productos especificos por precio
 - **Respuesta exitosa**:
   ```json
-    [
+   [
     {
         "id": "M96384kchS0k34cE5zAJP565Q8E0B9D",
         "name": "samsung grey 10 front",
@@ -220,7 +249,7 @@ El comando `npm run start` ejecuta el programa
 
 # Tecnologias Implementadas
 
-Javascript
+- **Javascript**
 
 
 # Autenticacion
