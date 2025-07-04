@@ -1,3 +1,4 @@
+// Validaciones para los productos
 export function nameValidated(name) {
     // Permite letras, numeros, espacios y algunos caracteres especiales
     const regex = /^[a-zA-Z0-9áéíóúÁÉÍÓÚñÑ\s.,-]+$/;
@@ -90,5 +91,41 @@ export const productValidated = ({ name, price, stock, category }) => {
         price,
         stock,
         category
+    }
+}
+
+// Validaciones para los usuarios
+export function emailValidated(email){
+    const regexEmail = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+
+    if (!email || email.trim() === '') {
+        throw new Error('El email no puede estar vacio');
+    };
+
+    if(!regexEmail.test(email)){
+        throw new Error('Correo no valido')
+    };
+    return;
+}
+
+export function passwordValidated(password){
+    if(!password || password.trim() === ''){
+        throw new Error('El password no debe estar vacio');
+    }
+
+    if(password.length < 7){
+        throw new Error(`El password ${password} debe contener minimo 7 caracteres`);
+    }
+    return;
+}
+
+export const userValidated = ({name, email, password}) => {
+    nameValidated(name);
+    emailValidated(email);
+    passwordValidated(password);
+    return {
+        name,
+        email,
+        password
     }
 }
