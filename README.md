@@ -239,7 +239,8 @@ El comando `npm run start` ejecuta el programa
   ```
 - **Respuesta exitosa**:
   ```json
-    {
+    { 
+        "id": "fajh3424jkhda",
         "email": "Tu email",
         "name": "Tu name",
         "password": "Tu password"
