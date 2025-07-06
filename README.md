@@ -18,6 +18,11 @@ El comando `npm run start` ejecuta el programa
 - **firebase**
 - **jsonwebtoken**
 
+## Instalar dependencias
+  ```json
+  npm install `aqui el nombre de las dependencias`
+  ```
+
 
 ## Endpoints De Productos
 
@@ -230,7 +235,7 @@ El comando `npm run start` ejecuta el programa
 ### Verifica usuario
 
 - **URL**: `POST user/check-user`
-- **Descripcion**: Crea un usuario
+- **Descripcion**: verifica en la base de datos si existe el usuario
 - **Cuerpo de la solicitud**:
   ```json
     {
