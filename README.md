@@ -19,7 +19,7 @@ El comando `npm run start` ejecuta el programa
 - **jsonwebtoken**
 
 ## Instalar dependencias
-  ```json
+  ```
   npm install `aqui el nombre de las dependencias`
   ```
 
